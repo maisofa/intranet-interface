@@ -35,7 +35,7 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
                 <SidebarButton
                   variant={pathname === link.href ? 'secondary' : 'ghost'}
                   icon={link.icon}
-                  className='w-full text-cyan-50'
+                  className={pathname === link.href ? "w-full text-black" : "w-full text-cyan-50"}
                 >
                   {link.label}
                 </SidebarButton>

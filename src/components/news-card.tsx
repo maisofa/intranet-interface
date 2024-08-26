@@ -1,3 +1,4 @@
+import { NewsCardDialog } from "./news-card-dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Image from "next/image";
 
@@ -20,6 +21,7 @@ export function NewsCard() {
                         <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac urna eget nunc varius lacinia.</p>
                     </div>
                 </div>
+                <NewsCardDialog />
             </CardContent>
         </Card>
     )
