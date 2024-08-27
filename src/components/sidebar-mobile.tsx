@@ -55,7 +55,6 @@ export function SidebarMobile(props: SidebarMobileProps) {
                 </SidebarButton>
               </Link>
             ))}
-            {props.sidebarItems.extras}
           </div>
           <div className='absolute w-full bottom-4 px-1 left-0'>
             <Separator className='absolute -top-3 left-0 w-full' />

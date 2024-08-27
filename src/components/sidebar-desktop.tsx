@@ -19,7 +19,7 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
   const pathname = usePathname();
 
   return (
-    <aside className='w-[270px] max-w-xs h-screen border-r bg-black'>
+    <aside className='w-[270px] fixed max-w-xs h-screen border-r bg-black'>
       <div className='h-full px-3 py-4'>
         <Image
           className='mx-5'
@@ -41,7 +41,6 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
                 </SidebarButton>
               </Link>
             ))}
-            {props.sidebarItems.extras}
           </div>
           <div className='absolute left-0 bottom-3 w-full px-3'>
             <Separator className='absolute -top-3 left-0 w-full' />
@@ -64,11 +63,11 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
                 <div className='space-y-1'>
                   <Link href='/'>
                     <SidebarButton size='sm' icon={Settings} className='w-full'>
-                      Account Settings
+                      Configurações
                     </SidebarButton>
                   </Link>
                   <SidebarButton size='sm' icon={LogOut} className='w-full'>
-                    Log Out
+                    Sair
                   </SidebarButton>
                 </div>
               </PopoverContent>

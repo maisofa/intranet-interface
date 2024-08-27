@@ -1,5 +1,4 @@
 import { LucideIcon } from 'lucide-react';
-import { ReactNode } from 'react';
 
 export interface SidebarItems {
   links: Array<{
@@ -7,5 +6,4 @@ export interface SidebarItems {
     href: string;
     icon?: LucideIcon;
   }>;
-  extras?: ReactNode;
 }

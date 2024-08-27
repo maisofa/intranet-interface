@@ -7,7 +7,8 @@ import {
   Pen,
   Calendar,
   Newspaper,
-  List
+  List,
+  PhoneCall
 } from 'lucide-react';
 import { SidebarDesktop } from './sidebar-desktop';
 import { SidebarItems } from '@/types/types';
@@ -21,6 +22,11 @@ const sidebarItems: SidebarItems = {
       href: '/item/lists',
       icon: Bookmark,
       label: 'Agendamentos',
+    },
+    {
+      href: '/item/bookmarks',
+      icon: PhoneCall,
+      label: 'Chamados',
     },
     {
       href: '/item/bookmarks',
