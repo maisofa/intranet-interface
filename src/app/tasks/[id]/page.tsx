@@ -1,5 +1,6 @@
 import { NotificationPopover } from "@/components/notification-popover";
 import { Sidebar } from "@/components/sidebar";
+import { TaskPropCard } from "@/components/task-prop-card";
 
 export default function TaskDetails() {
   return (
@@ -11,7 +12,7 @@ export default function TaskDetails() {
             <div className="mb-10">
                 <p className="text-base mb-2">Desenvolvimento de produto</p>
             </div>
-            <h2 className="text-xl mb-4">Últimas notícias</h2>
+            <TaskPropCard />
         </div>
       </div>
   </div>

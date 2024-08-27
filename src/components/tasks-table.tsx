@@ -1,170 +1,74 @@
 'use client';
 
 import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-import { Badge } from "./ui/badge"
-import { DeleteTaskAlert } from "./delete-task-alert"
-import { useRouter } from "next/navigation"
-  
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCell
+} from "@/components/ui/table";
+import { Badge } from "./ui/badge";
+import { DeleteTaskAlert } from "./delete-task-alert";
+import { useRouter } from "next/navigation";
+import { TaskDetails } from "./task-details";
+
+export interface Task {
+  id: string;
+  title: string;
+  user: string;
+  department: string;
+  status: "pendente" | "atrasada" | "concluída";
+  priority: "baixa" | "média" | "alta"; 
+  type: string;
+  finalDate: string;
+}
+
+const tasks: Task[] = [
+  {
+    id: "123",
+    title: "Desenvolvimento produto",
+    user: "Rodrigo Santos",
+    department: "TI",
+    status: "pendente",
+    priority: "baixa",
+    type: "produto",
+    finalDate: "10 jul"
+  },
+  {
+    id: "234",
+    title: "Criação agendamentos",
+    user: "Rodrigo Santos",
+    department: "TI",
+    status: "pendente",
+    priority: "baixa",
+    type: "produto",
+    finalDate: "10 jul"
+  }
+];
 
 export function TasksTable() {
-    const router = useRouter();
+  const router = useRouter();
 
-    return(
-        <Table>
-            <TableHeader>
-                <TableRow>
-                    <TableHead className="">Tarefa</TableHead>
-                    <TableHead className="">Responsável</TableHead>
-                    <TableHead className="">Setor</TableHead>
-                    <TableHead className="">Status</TableHead>
-                    <TableHead className="">Prioridade</TableHead>
-                    <TableHead className="">Tipo</TableHead>
-                    <TableHead className="">Prazo tarefa</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                <TableRow className="cursor-pointer" onClick={() => router.push("/tasks/1")}>
-                    <TableCell className="font-medium">Desenvolvimento produto</TableCell>
-                    <TableCell className="font-medium"> 
-                        <Badge>Rodrigo Santos</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                    <Badge>Engenharia</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-yellow-600">Pendente</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-red-600">Alta</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Qualidade</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">10 jul</TableCell>
-                    <TableCell className="font-medium">
-                        <DeleteTaskAlert />
-                    </TableCell>
-                </TableRow>
-                <TableRow className="cursor-pointer">
-                    <TableCell className="font-medium">Desenvolvimento produto</TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Rodrigo Santos</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                    <Badge>Engenharia</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-green-600">Completa</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-yellow-600">Média</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Qualidade</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">10 jul</TableCell>
-                    <TableCell className="font-medium">
-                        <DeleteTaskAlert />
-                    </TableCell>
-                </TableRow>
-                <TableRow className="cursor-pointer">
-                    <TableCell className="font-medium">Desenvolvimento produto</TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Rodrigo Santos</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                    <Badge>Engenharia</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-blue-600">Em andamento</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge  className="bg-red-600">Alta</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Qualidade</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">10 jul</TableCell>
-                    <TableCell className="font-medium">
-                        <DeleteTaskAlert />
-                    </TableCell>
-                </TableRow>
-                <TableRow className="cursor-pointer">
-                    <TableCell className="font-medium">Desenvolvimento produto</TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Rodrigo Santos</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                    <Badge>Engenharia</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-red-600">Atrasada</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-green-600">Baixa</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Qualidade</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">10 jul</TableCell>
-                    <TableCell className="font-medium">
-                        <DeleteTaskAlert />
-                    </TableCell>
-                </TableRow>
-                <TableRow className="cursor-pointer">
-                    <TableCell className="font-medium">Desenvolvimento produto</TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Rodrigo Santos</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                    <Badge>Engenharia</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-red-600">Atrasada</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-green-600">Baixa</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Qualidade</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">10 jul</TableCell>
-                    <TableCell className="font-medium">
-                        <DeleteTaskAlert />
-                    </TableCell>
-                </TableRow>
-                <TableRow className="cursor-pointer">
-                    <TableCell className="font-medium">Desenvolvimento produto</TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Rodrigo Santos</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                    <Badge>Engenharia</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-red-600">Atrasada</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge className="bg-green-600">Baixa</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">
-                        <Badge>Qualidade</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">10 jul</TableCell>
-                    <TableCell className="font-medium">
-                        <DeleteTaskAlert />
-                    </TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-
-    )
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="">Tarefa</TableHead>
+          <TableHead className="">Responsável</TableHead>
+          <TableHead className="">Setor</TableHead>
+          <TableHead className="">Status</TableHead>
+          <TableHead className="">Prioridade</TableHead>
+          <TableHead className="">Tipo</TableHead>
+          <TableHead className="">Prazo tarefa</TableHead>
+          <TableHead className="">Ações</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {tasks.map((task, index) => (
+          <TaskDetails key={index} task={task} />
+        ))}
+      </TableBody>
+    </Table>
+  );
 }

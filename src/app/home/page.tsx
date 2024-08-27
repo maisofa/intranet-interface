@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <div>
             <NotificationPopover />
-            <div className="flex">
+            <div>
                 <Sidebar />
                 <div className="mt-4 ml-72">
                     <div className="mb-10">

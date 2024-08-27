@@ -7,9 +7,9 @@ import { Bell } from "lucide-react"
 
 export default function Tasks() {
     return (
-        <div>
+        <div className="">
             <NotificationPopover />
-            <div className="flex">
+            <div>
                 <Sidebar />
                 <div className="p-2 ml-72">
                     <div className="mb-10">

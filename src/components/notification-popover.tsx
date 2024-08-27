@@ -10,19 +10,22 @@ export function NotificationPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-            <div className="cursor-pointer">
-                <div className="fixed top-6 right-6" >
-                    <Bell size={30} />
-                </div>
-                <div className="fixed top-4 right-6">
-                    <Badge className="w-2 flex justify-center items-center">5</Badge>
-                </div>
+        <div className="cursor-pointer">
+            <div className="fixed top-6 right-6" >
+                <Bell size={30} />
             </div>
+            <div className="fixed top-4 right-6">
+                <Badge className="w-2 flex justify-center items-center">5</Badge>
+            </div>
+        </div>
       </PopoverTrigger>
       <PopoverContent className="w-80 ml-[1200px] mt-14">
         <div className="grid gap-4">
           <div className="space-y-2 cursor-pointer">
-            <h4 className="font-medium leading-none">Aceite de tarefa</h4>
+            <div className="flex gap-2">
+              <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" ></span>
+              <h4 className="font-medium leading-none">Aceite de tarefa</h4>
+            </div>
             <p className="text-sm text-muted-foreground">
               Rodrigo aceitou sua solicitação de tarefa
             </p>
