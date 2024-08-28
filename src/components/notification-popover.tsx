@@ -19,7 +19,7 @@ export function NotificationPopover() {
             </div>
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-80 ml-[1200px] mt-14">
+      <PopoverContent side="top" align="end" className="w-80 mt-14 mr-4">
         <div className="grid gap-4">
           <div className="space-y-2 cursor-pointer">
             <div className="flex gap-2">
