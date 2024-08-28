@@ -10,11 +10,12 @@ export function NewsCard() {
             </CardHeader>
             <CardContent>
                 <div className="flex">
-                    <Image 
+                    <Image
                         src="/PARASEMPRE.webp"
                         alt="News"
-                        width={200}
-                        height={100}
+                        className="w-[350px] h-[200px]"
+                        width={350}
+                        height={200}
                     />
                     <div className="p-4">
                         <h3 className="text-2xl font-semibold mb-4">Anunciando nosso última lançamento</h3>

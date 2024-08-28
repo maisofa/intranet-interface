@@ -1,4 +1,5 @@
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Image from "next/image";
 
@@ -6,11 +7,11 @@ export function EventsCard() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Reunião Comercial</CardTitle>
+                <CardTitle className="text-base">Reunião Comercial</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="flex items-center gap-8">
-                    <div className="p-4">
+                    <div>
                         <p>Data</p>
                         <p>05/09/2024 13:00 horas</p>
                     </div>
@@ -22,7 +23,7 @@ export function EventsCard() {
                         <p>Tipo</p>
                         <Badge>Novos produtos</Badge>
                     </div>
-                    <button className="bg-orange-400 text-white px-2 py-1 mt-2 rounded-md text-base hover:bg-orange-300">Ver</button>
+                    <Button variant="outline">Ver</Button>
                 </div>
             </CardContent>
         </Card>
