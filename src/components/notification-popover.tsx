@@ -11,10 +11,10 @@ export function NotificationPopover() {
     <Popover>
       <PopoverTrigger asChild>
         <div className="cursor-pointer">
-            <div className="fixed top-6 right-6" >
+            <div className="absolute top-6 right-6" >
                 <Bell size={30} />
             </div>
-            <div className="fixed top-4 right-6">
+            <div className="absolute top-4 right-6">
                 <Badge className="w-2 flex justify-center items-center">5</Badge>
             </div>
         </div>

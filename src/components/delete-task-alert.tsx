@@ -15,7 +15,10 @@ export function DeleteTaskAlert() {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Delete />
+        <div className="flex justify-between">
+          <p>Apagar</p>
+          <Delete />
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

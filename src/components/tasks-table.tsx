@@ -54,14 +54,13 @@ export function TasksTable() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="">Tarefa</TableHead>
-          <TableHead className="">Responsável</TableHead>
-          <TableHead className="">Setor</TableHead>
-          <TableHead className="">Status</TableHead>
-          <TableHead className="">Prioridade</TableHead>
-          <TableHead className="">Tipo</TableHead>
-          <TableHead className="">Prazo tarefa</TableHead>
-          <TableHead className="">Ações</TableHead>
+          <TableHead className="text-center">Tarefa</TableHead>
+          <TableHead className="text-center">Responsável</TableHead>
+          <TableHead className="text-center">Setor</TableHead>
+          <TableHead className="text-center">Status</TableHead>
+          <TableHead className="text-center">Prioridade</TableHead>
+          <TableHead className="text-center">Tipo</TableHead>
+          <TableHead className="text-center">Prazo tarefa</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

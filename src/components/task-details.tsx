@@ -1,20 +1,18 @@
 'use client';
 
-import { useState } from "react";
-import { DeleteTaskAlert } from "./delete-task-alert";
 import { Task } from "./tasks-table";
 import { Badge } from "./ui/badge";
 import { TableCell, TableRow } from "./ui/table";
-import { Dialog } from "./ui/dialog";
-import { TaskDetailsModal } from "./task-details-modal";
 import { useRouter } from "next/navigation";
 
 export function TaskDetails({ task }: { task: Task }) {
   const router = useRouter()
 
   return (
-    <TableRow className="cursor-pointer" onClick={() => router.push(`/tasks/${task.id}`)}>
-      <TableCell className="font-medium">{task.title}</TableCell>
+    <TableRow className="cursor-pointer text-center">
+      <TableCell className="font-medium text-start">
+        {task.title}
+      </TableCell>
       <TableCell className="font-medium">
         <Badge>{task.user}</Badge>
       </TableCell>
@@ -31,9 +29,6 @@ export function TaskDetails({ task }: { task: Task }) {
         <Badge>{task.type}</Badge>
       </TableCell>
       <TableCell className="font-medium">{task.finalDate}</TableCell>
-      <TableCell className="font-medium">
-        <DeleteTaskAlert />
-      </TableCell>
     </TableRow>
   );
 }
