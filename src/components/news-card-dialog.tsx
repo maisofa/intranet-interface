@@ -16,7 +16,7 @@ export function NewsCardDialog() {
       <DialogTrigger asChild>
         <Button variant="outline" className="mt-2">Ver mais</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[700px] h-[700px]">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>

@@ -18,7 +18,7 @@ export interface Task {
   title: string;
   user: string;
   department: string;
-  status: "pendente" | "atrasada" | "concluída";
+  status: "pendente" | "atrasada" | "completa" | "em andamento" | "cancelada";
   priority: "baixa" | "média" | "alta"; 
   type: string;
   finalDate: string;
@@ -28,7 +28,7 @@ const tasks: Task[] = [
   {
     id: "123",
     title: "Desenvolvimento produto",
-    user: "Rodrigo Santos",
+    user: "Rodrigo S.",
     department: "TI",
     status: "pendente",
     priority: "baixa",
@@ -38,7 +38,7 @@ const tasks: Task[] = [
   {
     id: "234",
     title: "Criação agendamentos",
-    user: "Rodrigo Santos",
+    user: "Rodrigo S.",
     department: "TI",
     status: "pendente",
     priority: "baixa",
