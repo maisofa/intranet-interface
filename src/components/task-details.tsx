@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { DeleteTaskAlert } from "./delete-task-alert";
 import { Task } from "./tasks-table";
 import { Badge } from "./ui/badge";
@@ -29,35 +29,30 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
 
-const commentsData = [
-  {
-    id: "1",
-    avatar: "https://github.com/shadcn.png",
-    user: "Rodrigo S.",
-    hour: "1 hora",
-    comment: "Estou iniciando a tarefa"
-  },
-  {
-    id: "2",
-    avatar: "https://github.com/shadcn.png",
-    user: "Pedro H.",
-    hour: "1 hora",
-    comment: "Ok! estou no aguardo"
-  },
-  {
-    id: "1",
-    avatar: "https://github.com/shadcn.png",
-    user: "Rodrigo S.",
-    hour: "1 hora",
-    comment: "Tarefa finalizada, segue docs para conferência!"
-  },
-]
+interface commentsProps {
+  id: string,
+  avatar: string,
+  user: string,
+  hour: string,
+  comment: string
+}[]
 
 export function TaskDetails({ task }: { task: Task }) {
-  const [comments, setComments] = useState(commentsData);
+  const [comments, setComments] = useState<commentsProps[]>([]);
   const [newComment, setNewComment] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -67,7 +62,9 @@ export function TaskDetails({ task }: { task: Task }) {
   const [status, setStatus] = useState(task.status);
   const [openedCalendar, setOpenedCalendar] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
+  const [attachmentsLen, setAttachmentsLen] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const lastCommentRef = useRef<HTMLDivElement | null>(null);
 
   const handleAddComment = () => {
     if (newComment.trim() === "") return;
@@ -84,20 +81,44 @@ export function TaskDetails({ task }: { task: Task }) {
     setNewComment("");
   };
 
-
-const handleButtonClick = () => {
-  if (fileInputRef.current) {
-    fileInputRef.current.click();
+  const handleDeleteComment = (id: string) => {
+    const updatedComments = comments.filter(comment => comment.id !== id);
+    setComments(updatedComments);
   }
-};
 
-const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-  const files = event.target.files;
-  if (files) {
+  useEffect(() => {
+    if (lastCommentRef.current) {
+      lastCommentRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [comments]);
 
-    setAttachments(prev => [...prev, ...Array.from(files)]);
-  }
-};
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const newAttachments = Array.from(files);
+      setAttachments((prevAttachments) => {
+        const updatedAttachments = [...prevAttachments, ...newAttachments];
+        setAttachmentsLen(updatedAttachments.length);
+        return updatedAttachments;
+      });
+    }
+  };
+
+  const handleDeleteAttachment = (index: number) => {
+    setAttachments((prevAttachments) => {
+      const updatedAttachments = prevAttachments.filter((_, i) => i !== index);
+      setAttachmentsLen(updatedAttachments.length); // Atualiza o total
+      return updatedAttachments;
+    });
+  };
+
   const handleSave = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
     setIsEditing(false);
@@ -117,9 +138,9 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     <TableRow
       className="cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
-     onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <TableCell className="font-medium relative">
+      <TableCell className="font-medium relative" align="left">
         {task.title}
         {isHovered && (
           <div 
@@ -147,33 +168,30 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         <Badge>{task.type}</Badge>
       </TableCell>
       <TableCell className="font-medium">{task.finalDate}</TableCell>
-      <TableCell className="font-medium">
-        <DeleteTaskAlert />
-      </TableCell>
     </TableRow>    
 
     <Dialog open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-      <DialogContent className="sm:max-w-[900px] text-sm focus:outline-none">
-      <ScrollArea className="max-h-[80vh]">
+      <DialogContent className="sm:max-w-[900px] text-sm focus:outline-none p-0 flex flex-col">
+      <ScrollArea className="flex-grow max-h-[80vh] overflow-y-auto p-2">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Ellipsis 
-              className="fixed top-3 right-14 cursor-pointer hover:bg-slate-200 rounded-md" 
+              className="fixed top-3 right-12 cursor-pointer hover:bg-slate-200 rounded-md" 
             />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 mr-8 mt-2" side="bottom" align="end">
+          <DropdownMenuContent className="w-56" side="bottom" align="end">
             <DropdownMenuRadioGroup>
-              <DropdownMenuRadioItem value="right">Excluir</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="left">Excluir</DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <DialogHeader>
+        <DialogHeader className="px-2 mb-2 mt-6">
           <DialogTitle>
             {
               isEditing ? (
-                <input
-                  className="p-2 w-[50%]"
+                <Input
+                  className=" w-[50%] p-2 h-10 border-none text-lg mb-2"
                   type="text"
                   value={content}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => setContent(e.target.value)}
@@ -182,16 +200,16 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
                   autoFocus
                 />
               ) : (
-                <div className="p-2" onClick={() => setIsEditing(true)}>
+                <div className="p-2 h-10 flex items-center mb-2" onClick={() => setIsEditing(true)}>
                   {content}
                 </div>
               )
             } 
           </DialogTitle>
         </DialogHeader>
-        <div>
+        <div className="px-2">
           <div 
-            className="flex flex-col gap-4 w-[50%]"
+            className="flex flex-col gap-4 w-[50%] px-2"
           >
             <div className="flex justify-between">
               <div className="flex gap-2">
@@ -301,8 +319,13 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
             </div>
           </div>
           <hr className="mt-6 mb-6" />
-          <div>
-            <p className="text-lg">Anexos</p>
+          <div className="px-2">
+            { attachmentsLen > 0 ? (
+              <div className="flex items-center gap-2">
+                <p className="text-lg">Anexos</p>
+                <p className="w-6 h-6 flex items-center justify-center bg-slate-200 rounded-full">{attachmentsLen}</p>
+              </div>
+            ) : ""}
             <div className="flex gap-2 items-center">
               <input
                 type="file"
@@ -341,15 +364,32 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 
                       {/* Ícones de download e deletar ao passar o mouse */}
                       <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button
-                          onClick={() => {
-                            const updatedAttachments = attachments.filter((_, i) => i !== index);
-                            setAttachments(updatedAttachments);
-                          }}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          <Trash2 />
-                        </button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <button
+                              className="text-red-500 hover:text-red-700"
+                            >
+                              <Trash2 />
+                            </button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Excluir este arquivo?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Está ação não poderá ser desfeita!
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                              <AlertDialogAction 
+                                className="bg-red-600 hover:bg-red-500"
+                                onClick={() => handleDeleteAttachment(index)}
+                              >
+                                Continuar
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                         <a
                           href={URL.createObjectURL(file)}
                           download={file.name}
@@ -369,8 +409,8 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
             </ScrollArea>
           </div>
           <hr className="mt-6 mb-6" />
-          <p className="text-lg">Atividade</p>
-          <div>
+          <div className="px-2">
+            <p className="text-lg">Atividade</p>
             <Input 
               type="text" 
               placeholder="Adicionar comentário..." 
@@ -384,7 +424,7 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
               }}
             />
             {comments.map((comment, index) => (
-              <div className="mt-4" key={index}>
+              <div className="mt-4" key={index} ref={index === comments.length - 1 ? lastCommentRef : null}>
                 <div className="flex items-center gap-4"> 
                   <Avatar>
                     <AvatarImage src={comment.avatar} alt="@shadcn" />
@@ -396,7 +436,28 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
                 <p className="ml-14">{comment.comment}</p>
                 <div className="ml-14 mt-2">
                   <a href="" className="mr-2 hover:underline">Editar</a>
-                  <a href="" className="hover:underline">Excluir</a>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <a href="#  " className="hover:underline">Excluir</a>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Excluir este comentário?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Está ação não poderá ser desfeita!
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                        <AlertDialogAction 
+                          className="bg-red-600 hover:bg-red-500"
+                          onClick={() => handleDeleteComment(comment.id)}
+                        >
+                          Continuar
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
               </div>
             ))}
