@@ -47,14 +47,14 @@ const tasks: Task[] = [
   }
 ];
 
-export function TasksTable() {
+export function TasksTable() {  
   const router = useRouter();
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="text-center">Tarefa</TableHead>
+        <TableHead className="text-center">Tarefa</TableHead>
           <TableHead className="text-center">Responsável</TableHead>
           <TableHead className="text-center">Setor</TableHead>
           <TableHead className="text-center">Status</TableHead>
