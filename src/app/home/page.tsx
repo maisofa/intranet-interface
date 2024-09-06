@@ -11,7 +11,7 @@ export default function Home() {
             <NotificationPopover />
             <div>
                 <Sidebar />
-                <div className="mt-6 ml-72">
+                <div className="ml-72">
                     <div className="mb-10">
                         <p className="text-base mb-2">Bem-vindo!</p>
                         <p className="text-lg font-semibold">Rodrigo Santos</p>
