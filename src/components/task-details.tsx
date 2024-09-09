@@ -114,7 +114,7 @@ export function TaskDetails({ task }: { task: Task }) {
   const handleDeleteAttachment = (index: number) => {
     setAttachments((prevAttachments) => {
       const updatedAttachments = prevAttachments.filter((_, i) => i !== index);
-      setAttachmentsLen(updatedAttachments.length); // Atualiza o total
+      setAttachmentsLen(updatedAttachments.length);
       return updatedAttachments;
     });
   };
@@ -153,19 +153,19 @@ export function TaskDetails({ task }: { task: Task }) {
         )}
       </TableCell>
       <TableCell className="font-medium">
-        <Badge>{task.user}</Badge>
+        <Badge className="rounded-sm">{task.user}</Badge>
       </TableCell>
       <TableCell className="font-medium">
-        <Badge>{task.department}</Badge>
+        <Badge className="rounded-sm">{task.department}</Badge>
       </TableCell>
       <TableCell className="font-medium">
-        <Badge className="bg-green-600">{task.status}</Badge>
+        <Badge className="bg-green-600 rounded-sm">{task.status}</Badge>
       </TableCell>
       <TableCell className="font-medium">
-        <Badge className="bg-yellow-600">{task.priority}</Badge>
+        <Badge className="bg-yellow-600 rounded-sm">{task.priority}</Badge>
       </TableCell>
       <TableCell className="font-medium">
-        <Badge>{task.type}</Badge>
+        <Badge className="rounded-sm">{task.type}</Badge>
       </TableCell>
       <TableCell className="font-medium">{task.finalDate}</TableCell>
     </TableRow>    
@@ -181,7 +181,11 @@ export function TaskDetails({ task }: { task: Task }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56" side="bottom" align="end">
             <DropdownMenuRadioGroup>
-              <DropdownMenuRadioItem value="left">Excluir</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem 
+                value="left"
+              >
+                Excluir
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -218,7 +222,7 @@ export function TaskDetails({ task }: { task: Task }) {
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Badge className={`w-28 flex justify-center 
+                  <Badge className={`w-28 flex justify-center rounded-sm 
                   p-2
                   ${priority === "baixa" ? "bg-green-600" : ""} 
                   ${priority === "média" ? "bg-yellow-600" : ""} 
@@ -248,7 +252,7 @@ export function TaskDetails({ task }: { task: Task }) {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                 <Badge 
-                  className={`w-28 flex justify-center p-2 
+                  className={`w-28 flex justify-center p-2 rounded-sm
                   ${status === "pendente" ? "bg-yellow-600" : ""} 
                   ${status === "em andamento" ? "bg-blue-600" : ""} 
                   ${status === "completa" ? "bg-green-600" : ""} 
@@ -293,7 +297,7 @@ export function TaskDetails({ task }: { task: Task }) {
                 <Building2 size={18}  />
                 <p className="text-slate-500">Departamento</p>
               </div>
-              <Badge className="w-28 flex justify-center p-2">{task.department}</Badge>
+              <Badge className="w-28 flex justify-center p-2 rounded-sm">{task.department}</Badge>
             </div>
             <div className="flex justify-between">
               <div className="flex gap-2">
@@ -424,7 +428,7 @@ export function TaskDetails({ task }: { task: Task }) {
               }}
             />
             {comments.map((comment, index) => (
-              <div className="mt-4" key={index} ref={index === comments.length - 1 ? lastCommentRef : null}>
+              <div className="mt-4 mb-8" key={index} ref={index === comments.length - 1 ? lastCommentRef : null}>
                 <div className="flex items-center gap-4"> 
                   <Avatar>
                     <AvatarImage src={comment.avatar} alt="@shadcn" />

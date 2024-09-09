@@ -16,11 +16,7 @@ export function NewsCardDialog() {
       <DialogTrigger asChild>
         <Button variant="outline" className="mt-2">Ver mais</Button>
       </DialogTrigger>
-<<<<<<< HEAD
       <DialogContent className="sm:max-w-[700px] h-[700px]">
-=======
-      <DialogContent className="">
->>>>>>> 0749467038ca6287becbc968349998a698301204
         <DialogHeader>
           <DialogTitle>Anunciando nosso novo lançamento</DialogTitle>
           <DialogDescription>
