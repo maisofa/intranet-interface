@@ -1,5 +1,6 @@
 'use client';
 
+import { CreateTask } from "@/components/create-task";
 import { NotificationPopover } from "@/components/notification-popover"
 import { Sidebar } from "@/components/sidebar"
 import { TaskPaginationCard } from "@/components/task-pagination-card"
@@ -13,6 +14,11 @@ import { useState } from "react"
 
 export default function Tasks() {
   const [status, setStatus] = useState<string | null>(null)
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleDialogClose = () => {
+    setIsSheetOpen(false);
+  };
 
   return (
     <div>
@@ -25,10 +31,13 @@ export default function Tasks() {
             <p className="text-lg font-semibold">5 tarefas pendentes</p>
           </div>
           <div className="flex items-center gap-4 mb-4">
-            <Button>
+            <Button onClick={() => setIsSheetOpen(true)}>
               <Plus />
               Adicionar tarefa
             </Button>
+
+            <CreateTask isOpened={isSheetOpen} onClose={handleDialogClose} />
+
             <Tabs defaultValue="pendentes">
               <TabsList>
                 <TabsTrigger value="completas" onClick={() => setStatus("completa")}>
