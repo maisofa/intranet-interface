@@ -194,14 +194,14 @@ export function CreateTask({ isOpened, onClose }: { isOpened: boolean, onClose: 
                   </Badge>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent defaultValue="baixa" className="w-56 text-white">
-                  <DropdownMenuRadioGroup>
-                    <DropdownMenuRadioItem value="top" className="bg-green-700" onClick={() => setPriority("baixa")}>
+                  <DropdownMenuRadioGroup className="gap-y-2 flex flex-col">
+                    <DropdownMenuRadioItem value="top" className="bg-green-700 hover:!bg-green-500 hover:!text-white cursor-pointer" onClick={() => setPriority("baixa")}>
                       Baixa
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="bottom" className="bg-yellow-700" onClick={() => setPriority("média")}>
+                    <DropdownMenuRadioItem value="bottom" className="bg-yellow-700 hover:!bg-yellow-500 hover:!text-white cursor-pointer" onClick={() => setPriority("média")}>
                       Média
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="right" className="bg-red-700" onClick={() => setPriority("alta")}>
+                    <DropdownMenuRadioItem value="right" className="bg-red-700 hover:!bg-red-500 hover:!text-white cursor-pointer" onClick={() => setPriority("alta")}>
                       Alta
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
@@ -229,20 +229,20 @@ export function CreateTask({ isOpened, onClose }: { isOpened: boolean, onClose: 
                 </Badge>  
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 text-white">
-                  <DropdownMenuRadioGroup className="gap-y-2 flex flex-col" >
-                    <DropdownMenuRadioItem value="top" className="bg-yellow-700 hover:bg-yellow-600" onClick={() => setStatus("pendente")}>
+                  <DropdownMenuRadioGroup className="gap-y-2 flex flex-col">
+                    <DropdownMenuRadioItem value="top" className="bg-yellow-700 hover:!bg-yellow-500 hover:!text-white cursor-pointer" onClick={() => setStatus("pendente")}>
                       Pendente
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="bottom" className="bg-blue-700" onClick={() => setStatus("em andamento")}>
+                    <DropdownMenuRadioItem value="bottom" className="bg-blue-700 hover:!bg-blue-500 hover:!text-white cursor-pointer" onClick={() => setStatus("em andamento")}>
                       Em andamento
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="right" className="bg-green-700" onClick={() => setStatus("completa")}>
+                    <DropdownMenuRadioItem value="right" className="bg-green-700 hover:!bg-green-500 hover:!text-white cursor-pointer" onClick={() => setStatus("completa")}>
                       Completa
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="right" className="bg-red-700" onClick={() => setStatus("atrasada")}>
+                    <DropdownMenuRadioItem value="right" className="bg-red-700 hover:!bg-red-500 cursor-pointer" onClick={() => setStatus("atrasada")}>
                       Atrasada
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="right" className="bg-orange-700" onClick={() => setStatus("cancelada")}>
+                    <DropdownMenuRadioItem value="right" className="bg-orange-700 hover:!bg-orange-500 cursor-pointer" onClick={() => setStatus("cancelada")}>
                       Cancelada
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
