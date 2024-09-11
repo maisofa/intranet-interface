@@ -5,7 +5,7 @@ import {
   Bookmark,
   Home,
   Pen,
-  Calendar,
+  CalendarDays,
   Newspaper,
   List,
   PhoneCall
@@ -30,7 +30,7 @@ const sidebarItems: SidebarItems = {
     },
     {
       href: '/item/bookmarks',
-      icon: Calendar,
+      icon: CalendarDays,
       label: 'Eventos',
     },
     {
