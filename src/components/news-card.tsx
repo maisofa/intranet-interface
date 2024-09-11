@@ -13,7 +13,7 @@ export function NewsCard() {
                     <Image
                         src="/PARASEMPRE.webp"
                         alt="News"
-                        className="w-[350px] h-[200px]"
+                        className="w-[350px] h-[200px] rounded-lg"
                         width={350}
                         height={200}
                     />
