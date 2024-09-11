@@ -22,7 +22,7 @@ export default function Home() {
                     <h2 className="text-xl mb-4 mt-6">Próximos eventos</h2>
                     <EventsCard />
                     <h2 className="text-xl mb-4 mt-6">Tarefas pendentes</h2>
-                    <TasksTable />
+                    <TasksTable status={"pendente"} />
                     <br />
                     <br /><br />
                 </div>
