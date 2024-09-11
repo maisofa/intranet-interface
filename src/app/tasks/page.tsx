@@ -49,10 +49,10 @@ export default function Tasks() {
                 <TabsTrigger value="em andamento" onClick={() => setStatus("em andamento")}>
                   Em andamento
                 </TabsTrigger>
-                <TabsTrigger value="cancelada" onClick={() => setStatus("em andamento")}>
+                <TabsTrigger value="cancelada" onClick={() => setStatus("cancelada")}>
                   Canceladas
                 </TabsTrigger>
-                <TabsTrigger value="atrasada" onClick={() => setStatus("em andamento")}>
+                <TabsTrigger value="atrasada" onClick={() => setStatus("atrasada")}>
                   Atrasadas
                 </TabsTrigger>
               </TabsList>
