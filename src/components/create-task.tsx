@@ -139,7 +139,7 @@ export function CreateTask({ isOpened, onClose }: { isOpened: boolean, onClose: 
         onClose();
       }
     }}>
-      <DialogContent className="sm:max-w-[900px] text-sm focus:outline-none p-0 flex flex-col">
+      <DialogContent className="sm:max-w-[900px] min-h-[80vh] text-sm focus:outline-none p-0 flex flex-col">
       <ScrollArea className="flex-grow max-h-[80vh] overflow-y-auto p-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

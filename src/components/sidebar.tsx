@@ -29,7 +29,7 @@ const sidebarItems: SidebarItems = {
       label: 'Chamados',
     },
     {
-      href: '/item/bookmarks',
+      href: '/events',
       icon: CalendarDays,
       label: 'Eventos',
     },

@@ -45,6 +45,26 @@ const tasks: Task[] = [
     priority: "baixa",
     type: "produto",
     finalDate: "10 jul"
+  },
+  {
+    id: "567",
+    title: "Página login",
+    user: "Auguto L.",
+    department: "TI",
+    status: "em andamento",
+    priority: "baixa",
+    type: "produto",
+    finalDate: "10 jul"
+  },
+  {
+    id: "891",
+    title: "Criação códigos",
+    user: "Samuel L.",
+    department: "Engenharia",
+    status: "atrasada",
+    priority: "alta",
+    type: "produto",
+    finalDate: "10 jul"
   }
 ];
 
@@ -52,7 +72,7 @@ export function TasksTable({ status }: { status: string | null }) {
   const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks);
 
   const handleTaskStatus = () => {
-    if (status) {
+    if (status && status !== "todas") {
       return tasks.filter((task) => task.status === status);
     }
     return tasks;

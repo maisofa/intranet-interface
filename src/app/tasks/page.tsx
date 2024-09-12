@@ -38,8 +38,11 @@ export default function Tasks() {
 
             <CreateTask isOpened={isSheetOpen} onClose={handleDialogClose} />
 
-            <Tabs defaultValue="pendentes">
+            <Tabs defaultValue="todas">
               <TabsList>
+              <TabsTrigger value="todas" onClick={() => setStatus("todas")}>
+                  Todas
+                </TabsTrigger>
                 <TabsTrigger value="completas" onClick={() => setStatus("completa")}>
                   Completas
                 </TabsTrigger>
