@@ -438,6 +438,9 @@ export function CreateTask({ isOpened, onClose }: { isOpened: boolean, onClose: 
           </div>
         </div>
         </ScrollArea>
+        <div className="flex justify-end">
+          <Button className="w-[10%] mb-1 mr-1">Salvar</Button>
+        </div>
       </DialogContent>
     </Dialog>
   )
