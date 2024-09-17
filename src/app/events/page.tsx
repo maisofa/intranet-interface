@@ -209,7 +209,6 @@ export default function Tasks() {
             </div>
           </div>
           <EventsTable events={events} statusTask={statusTask}/>
-          <TaskPaginationCard />
         </div>
       </div>
 

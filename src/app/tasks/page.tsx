@@ -72,7 +72,6 @@ export default function Tasks() {
             </div>
           </div>
           <TasksTable status={status}/>
-          <TaskPaginationCard />
         </div>
       </div>
     </div>
